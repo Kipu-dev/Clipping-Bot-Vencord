@@ -1,8 +1,6 @@
-import { Devs, definePlugin, definePluginSettings } from "@vencord/types/plugins";
-import { OptionType } from "@vencord/types/components/SettingsPanel";
-import { showToast } from "@vencord/api/Notices";
-import { getByProps } from "@vencord/api/Webpack";
-import { addPreSendListener, removePreSendListener } from "@vencord/api/MessageEvents";
+import definePlugin, { definePluginSettings, OptionType } from "@api/settings";
+import { addPreSendListener } from "@api/MessageEvents";
+import { showToast } from "@webpack/common";
 import { OBSWebSocketClient } from "./obsWebSocket";
 
 const settings = definePluginSettings({
@@ -10,31 +8,26 @@ const settings = definePluginSettings({
     type: OptionType.STRING,
     default: "ws://127.0.0.1:4455",
     description: "OBS WebSocket Server URL",
-    restartNeeded: false,
   },
   obsPassword: {
     type: OptionType.STRING,
     default: "",
     description: "OBS WebSocket Password (leave empty if not required)",
-    restartNeeded: false,
   },
   chatTriggerEnabled: {
     type: OptionType.BOOLEAN,
     default: false,
     description: "Enable chat trigger for clipping (!clip command)",
-    restartNeeded: false,
   },
   chatTriggerCommand: {
     type: OptionType.STRING,
     default: "!clip",
     description: "Chat command to trigger clip creation",
-    restartNeeded: false,
   },
   notifyOnClip: {
     type: OptionType.BOOLEAN,
     default: true,
     description: "Show toast notification when clip is created",
-    restartNeeded: false,
   },
 });
 
@@ -45,12 +38,7 @@ export default definePlugin({
   name: "OBS Clipping Bot",
   description: "Create clips from Discord streams via OBS Replay Buffer",
   version: "1.0.0",
-  authors: [
-    {
-      name: "Claude Haiku 4.5",
-      id: "0",
-    },
-  ],
+  authors: [{ name: "Claude" }],
   settings,
 
   start() {
