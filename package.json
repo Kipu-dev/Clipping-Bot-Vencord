@@ -1,0 +1,15 @@
+{
+  "name": "clipping-bot-vencord",
+  "version": "1.0.0",
+  "description": "OBS Replay Buffer Clipping Plugin for Vencord",
+  "author": "Your Name",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
